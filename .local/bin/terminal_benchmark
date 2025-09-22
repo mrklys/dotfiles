@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+TERM_NAME=${1:-TERM}
+
+# Generate 100MB of random tex.
+cat /dev/urandom | base64 | dd of=/tmp/randomdata bs=1024 count=100k
+
+# This also shows MB/s very nicely thanks to `dd`.
+{ time dd if=/tmp/randomdata bs=10240; } 2> bench_$TERM_NAME.txt
+
+# Results are written to bench_TERM.txt
+cat bench_$TERM_NAME.txt
