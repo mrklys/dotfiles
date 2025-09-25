@@ -5,7 +5,7 @@
 iso="UA"
 CPU_CORES=$(nproc)
 TOTAL_MEM=$(cat /proc/meminfo | grep -i 'memtotal' | grep -o '[[:digit:]]*')
-INSTALL_YAY=1
+
 INSTALL_BASH=1
 INSTALL_DWM=1
 
@@ -297,6 +297,11 @@ ln -s /usr/share/zoneinfo/${TIMEZONE} /etc/localtime
 echo -e "KEYMAP=${KEYMAP}\nXKBLAYOUT=${KEYMAP}\nFONT=ter-v18b" > /etc/vconsole.conf
 echo "Keymap set to: ${KEYMAP}"
 
+echo -ne "
+-------------------------------------------------------------------------
+                        Pacman configuration
+-------------------------------------------------------------------------
+"
 # Add parallel downloading
 sed -i 's/^#ParallelDownloads/ParallelDownloads/' /etc/pacman.conf
 
