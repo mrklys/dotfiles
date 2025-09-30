@@ -42,6 +42,11 @@ elif [ -f /etc/bash_completion ]; then
     . /etc/bash_completion
 fi
 
+# Git Prompt
+if [ -f /usr/share/git/completion/git-prompt.sh ]; then
+    . /usr/share/git/completion/git-prompt.sh
+fi
+
 #######################################################
 # EXPORTS
 #######################################################
@@ -306,7 +311,8 @@ _green="\[\e[1;32m\]"
 _reset="\[\e[0m\]"
 _blue="\[\e[1;34m\]"
 _yelow="\[\e[1;33m\]"
-PS1="$_blue[$_green\u$_blue@$_green\h$_blue] \t [$_yelow\w$_blue]\n$_reset\$ "
+_red="\[\e[1;31m\]"
+PS1="$_blue[$_green\u$_blue@$_green\h$_blue] \t [$_yelow\w$_blue]$_red \$(__git_ps1 '(%s)')$_reset\n\$ "
 
 eval "$(zoxide init bash --no-cmd)"
 eval "$(fzf --bash)"
