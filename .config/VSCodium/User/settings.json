@@ -1,0 +1,14 @@
+{
+    // --------------------------------------------------------------- Update
+    "update.mode": "manual",
+    "extensions.autoUpdate": "onlyEnabledExtensions",
+    
+    // --------------------------------------------------------------- Security
+    "security.workspace.trust.untrustedFiles": "open",
+    "telemetry.telemetryLevel": "off",
+
+    // --------------------------------------------------------------- Window
+    "window.dialogStyle": "custom",
+    "window.titleBarStyle": "custom",
+    "window.menuBarVisibility": "classic"
+}

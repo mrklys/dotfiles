@@ -27,7 +27,8 @@ fi
 #######################################################
 # FastFetch
 if [ -f /usr/bin/fastfetch ]; then
-    fastfetch
+    # disable fastfetch for vscode integrated terminal	
+    [[ ! "$TERM_PROGRAM" == "vscode" ]] && fastfetch
 fi
 
 # Source global definitions
