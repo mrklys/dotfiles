@@ -115,6 +115,8 @@ alias ebrc='micro ~/.bashrc'
 
 # Alias to show the date
 alias now='date "+%d-%m-%Y %A %T %Z"'
+alias cal='cal -m'
+alias caly='cal -m --year'
 
 # Alias to search through AUR
 alias yayf='yay -Slq | fzf --multi --preview "yay -Sii {1}" --preview-window=down:75% | xargs -ro yay -S'

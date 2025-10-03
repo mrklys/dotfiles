@@ -1,0 +1,3 @@
+header  1;34  # Blue text 
+weekend 35    # Magenta text
+today   1;5;7 # Reverse text
