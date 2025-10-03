@@ -457,6 +457,10 @@ echo -ne "
     # Set user as owner
     ( cd /home/$USERNAME && chown -R $USERNAME:$USERNAME .*)
 
+    # Backgrounds download
+    [ ! -d "/home/$USERNAME/Pictures/backgrounds" ] && mkdir -p "/home/$USERNAME/Pictures/backgrounds"
+    curl -o /home/$USERNAME/Pictures/backgrounds/backgrn0.png -O https://i.redd.it/1r1kk9qi00961.png
+
     systemctl enable dbus.service
 fi
 
