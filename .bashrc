@@ -75,6 +75,15 @@ export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_STATE_HOME="$HOME/.local/state"
 export XDG_CACHE_HOME="$HOME/.cache"
 
+# set up Docker config folder
+export DOCKER_CONFIG="$HOME/.config/docker"
+
+# set up dev folders
+export CARGO_HOME="$HOME/.dev/cargo"
+export RUSTUP_HOME="$HOME/.dev/rustup"
+export CMAKE_CONFIG_DIR="$HOME/.dev/cmake"
+export NPM_CONFIG_USERCONFIG="$HOME/.dev/npm"
+
 # Allow Ctrl-S for history navigation (with Ctrl-R)
 [[ $- == *i* ]] && stty -ixon
 
@@ -307,7 +316,7 @@ if [[ $- == *i* ]]; then
 fi
 
 # Extend PATH 
-export PATH=$PATH:"$HOME/.local/bin:$HOME/.fzf/bin"
+export PATH=$PATH:"$HOME/.local/bin:$HOME/.fzf/bin:$CARGO_HOME/bin"
 
 # Prompt
 _green="\[\e[1;32m\]"
