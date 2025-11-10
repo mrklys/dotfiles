@@ -52,7 +52,7 @@ fi
 # EXPORTS
 #######################################################
 # Disable the bell
-if [[ $iatest -gt 0 ]]; then bind 'set bell-style visible'; fi
+if [[ $iatest -gt 0 ]]; then bind 'set bell-style none'; fi
 
 # Expand the history size
 export HISTFILESIZE=10000
@@ -86,6 +86,7 @@ export NPM_CONFIG_USERCONFIG="$HOME/.dev/npm"
 
 # Allow Ctrl-S for history navigation (with Ctrl-R)
 [[ $- == *i* ]] && stty -ixon
+export FZF_CTRL_R_OPTS="--height 10"
 
 # Ignore case on auto-completion
 # Note: bind used instead of sticking these in .inputrc
@@ -139,12 +140,8 @@ alias mkdir='mkdir -p'
 alias ps='ps auxf'
 alias ping='ping -c 5'
 alias less='less -R'
-alias cat='bat'
 
 alias cls='clear'
-
-# Alias grep to rg for ripgrep
-alias grep='rg'
 
 # Change directory aliases
 alias ..='cd ..'
