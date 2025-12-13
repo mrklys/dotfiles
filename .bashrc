@@ -98,8 +98,10 @@ if [[ $iatest -gt 0 ]]; then bind 'TAB:menu-complete'; fi
 if [[ $iatest -gt 0 ]]; then bind '"\e[Z":menu-complete-backward'; fi
 
 # Set the default editor
-export EDITOR=micro
-export VISUAL=micro
+export EDITOR=nvim
+export VISUAL=nvim
+export SUDO_EDITOR=nvim
+alias vim=nvim
 
 # To have colors for ls and all grep commands such as grep, egrep and zgrep
 export CLICOLOR=1
@@ -121,7 +123,7 @@ export LESS_TERMCAP_us=$'\E[01;32m'
 # EG: the ls command is aliased, but to use the normal ls command you would type \ls
 
 # Edit this .bashrc file
-alias ebrc='micro ~/.bashrc'
+alias ebrc='nvim  ~/.bashrc'
 
 # Alias to show the date
 alias now='date "+%d-%m-%Y %A %T %Z"'
