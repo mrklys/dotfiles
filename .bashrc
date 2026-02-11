@@ -186,7 +186,8 @@ alias p='ps aux | grep'
 alias openports='netstat -nape --inet'
 
 # Alias's to show disk space and space used in a folder
-alias treed='\tree -CAFd'
+alias tree='tree -CAhF --dirsfirst'
+alias treed='tree -CAFd'
 alias mountedinfo='df -hT'
 
 # Alias's for archives
@@ -260,50 +261,6 @@ function whatsmyip () {
     echo -e "\n"
 }
 
-#######################################################
-# GIT
-#######################################################
-
-alias status='git status && git diff --shortstat'
-alias switch='git switch'
-alias checkout='git checkout'
-alias commit='git commit -v -m'
-alias pull='git pull --ff-only'
-alias push='git push -v'
-alias merge='git merge -v --no-ff'
-alias fetch='git fetch origin --tags'
-alias gitk='gitk --all --branches'
-alias dd='git diff --word-diff=color'
-alias su='git submodule update --recursive'
-
-alias amend='git commit --amend --no-edit -v'
-alias wip='git add -A && git commit -m "___WIP___"'
-alias rewip='git reset --soft HEAD^'
-
-alias hide='git stash save temp_backup --include-untracked'
-alias rehide='git stash pop stash@{0}'
-
-alias unstage='git reset HEAD --'
-alias cleanup='git reset --hard'
-
-alias initempty='git init && git commit -m “root” --allow-empty'
-alias please='git push -v --force-with-lease'
-
-alias exclude='!f() { nano .git/info/exclude; }; f'
-alias untrack='git update-index --assume-unchanged --verbose'
-alias track='git update-index --no-assume-unchanged --verbose'
-
-alias log="git log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%C(bold blue)<%an>%Creset' --abbrev-commit"
-alias gittree="git log --graph --abbrev-commit --decorate --all --format=format:\"%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(dim white) - %an%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n %C(white)%s%C(reset)\""
-
-alias tree='treef'
-function treef () {
-    if ( git rev-parse --is-inside-work-tree >/dev/null 2>&1 ); then
-        gittree
-    else 
-        \tree -CAhF --dirsfirst
-    fi
-}
 #######################################################
 # Set the zoxide, fzf and command prompt
 #######################################################
