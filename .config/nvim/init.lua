@@ -49,7 +49,7 @@ vim.o.inccommand = 'split'
 -- Show which line your cursor is on
 vim.o.cursorline = true
 -- Minimal number of screen lines to keep above and below the cursor.
-vim.o.scrolloff = 5
+vim.o.scrolloff = 0
 -- if performing an operation that would fail due to unsaved changes in the buffer (like `:q`),
 -- instead raise a dialog asking if you wish to save the current file(s)
 vim.o.confirm = true
@@ -208,9 +208,6 @@ statusline.section_location = function() return '%2l:%-2v' end
 require('oil').setup({
     columns = { 'icon' },
     keymaps = {
-        ['<C-l>'] = false,
-        ['<C-j>'] = false,
-        ['<M-h>'] = 'actions.select_split',
         ['q'] = 'actions.close',
         ['<Esc>'] = 'actions.close',
     },
@@ -245,6 +242,8 @@ map('i', '<C-Right>',  '<C-O>w',  { desc = 'Move word forward' })
 -- Move the current line
 map({ 'n', 'i' }, '<A-Up>',   '<Esc>:m .-2<CR>==gi', { desc = 'Move line up' })
 map({ 'n', 'i' }, '<A-Down>', '<Esc>:m .+1<CR>==gi', { desc = 'Move line down' })
+map('v',          '<A-Up>',   ":m '<-2<CR>gv=gv",    { desc = 'Move selection up' })
+map('v',          '<A-Down>', ":m '>+1<CR>gv=gv",    { desc = 'Move selection down' })
 -- Undo/Redo
 map({ 'n', 'i' }, '<C-z>', '<Esc>u',     { desc = 'Undo' })
 map({ 'n', 'i' }, '<C-y>', '<Esc><C-r>', { desc = 'Redo' })
@@ -260,6 +259,13 @@ map('v', '<Tab>',   '>gv',   { desc = 'Indent selected block' })
 map('n', '<S-Tab>', '<<',    { desc = 'Outdent line' })
 map('i', '<S-Tab>', '<C-d>', { desc = 'Outdent line' })
 map('v', '<S-Tab>', '<gv',   { desc = 'Outdent selected block' })
+-- Comment/Uncomment
+map('n', '<C-/>', 'gcc',       { remap = true, desc = 'Comment line' })
+map('n', '<C-_>', 'gcc',       { remap = true, desc = 'Comment line' })
+map('i', '<C-/>', '<Esc>gccA', { remap = true, desc = 'Comment line' })
+map('i', '<C-_>', '<Esc>gccA', { remap = true, desc = 'Comment line' })
+map('v', '<C-/>', 'gc',        { remap = true, desc = 'Comment selection' })
+map('v', '<C-_>', 'gc',        { remap = true, desc = 'Comment selection' })
 -- Delete by words
 map('i', '<C-H>',      '<C-W>',   { desc = 'Delete word backward' })
 map('i', '<C-Delete>', '<C-O>dw', { desc = 'Delete word forward' })
@@ -274,24 +280,25 @@ map({ 'n' }, '<S-Up>',    '<C-o><C-w>k', { desc = 'Move focus up' })
 map({ 'n' }, '<S-Down>',  '<C-o><C-w>j', { desc = 'Move focus down' })
 
 -- [[ Tools & Plugins ]]
-map('n', '<leader>d', function() Snacks.dashboard.open() end,         { desc = '[D]ashboard' })
-map('n', '<leader>o', require('oil').toggle_float,                    { desc = '[O]il' })
+map({ 'n', 'i' }, '<C-e>',     Snacks.explorer.open,                  { desc = 'Explorer' })
+map('n',          '<leader>d', Snacks.dashboard.open,                 { desc = '[D]ashboard' })
+map('n',          '<leader>o', require('oil').toggle_float,           { desc = '[O]il' })
 map('n', '<leader>i', function() Snacks.toggle.indent():toggle() end, { desc = 'Toggle [I]ndent Visibility' })
 
 -- [[ Search ]]
-map({ 'n', 'i' }, '<C-f>',   function() Snacks.picker.lines() end, { desc = 'Search in File' })
-map({ 'n', 'i' }, '<C-S-f>', function() Snacks.picker.grep() end,  { desc = 'Global Search (Grep)' })
-map('n', '<leader>sl', function() Snacks.picker.lines() end,       { desc = '[S]earch [L]ine' })
-map('n', '<leader>sg', function() Snacks.picker.grep() end,        { desc = '[S]earch by [G]rep' })
-map('n', '<leader>sf', function() Snacks.picker.smart() end,       { desc = '[S]earch [F]iles (Smart)' })
-map('n', '<leader>sF', function() Snacks.picker.files() end,       { desc = '[S]earch [F]iles' })
-map('n', '<leader>sw', function() Snacks.picker.grep_word() end,   { desc = '[S]earch current [W]ord' })
-map('n', '<leader>sp', function() Snacks.picker.projects() end,    { desc = '[S]earch [P]rojects' })
-map('n', '<leader>sr', function() Snacks.picker.resume() end,      { desc = '[S]earch [R]esume' })
-map('n', '<leader>sR', ':%s//g<Left><Left>',                       { desc = '[S]earch and [R]eplace in current File' })
-map('n', '<leader>sk', function() Snacks.picker.keymaps() end,     { desc = '[S]earch [K]eymaps' })
-map('n', '<Esc>',      '<cmd>nohlsearch<CR>',                      { desc = 'Clear search highlights' })
+map({ 'n', 'i' }, '<C-f>',   Snacks.picker.lines, { desc = 'Search in File' })
+map({ 'n', 'i' }, '<C-S-f>', Snacks.picker.grep,  { desc = 'Global Search (Grep)' })
+map('n', '<leader>sl', Snacks.picker.lines,       { desc = '[S]earch [L]ine' })
+map('n', '<leader>sg', Snacks.picker.grep,        { desc = '[S]earch by [G]rep' })
+map('n', '<leader>sf', Snacks.picker.smart,       { desc = '[S]earch [F]iles (Smart)' })
+map('n', '<leader>sF', Snacks.picker.files,       { desc = '[S]earch [F]iles' })
+map('n', '<leader>sw', Snacks.picker.grep_word,   { desc = '[S]earch current [W]ord' })
+map('n', '<leader>sp', Snacks.picker.projects,    { desc = '[S]earch [P]rojects' })
+map('n', '<leader>sr', Snacks.picker.resume,      { desc = '[S]earch [R]esume' })
+map('n', '<leader>sR', ':%s//g<Left><Left>',      { desc = '[S]earch and [R]eplace in current File' })
+map('n', '<leader>sk', Snacks.picker.keymaps,     { desc = '[S]earch [K]eymaps' })
+map('n', '<Esc>',      '<cmd>nohlsearch<CR>',     { desc = 'Clear search highlights' })
 
 -- [[ Terminal ]]
-map({ 'n', 'i', 't' }, '<C-j>', function() Snacks.terminal.toggle() end, { desc = 'Toggle Terminal' })
+map({ 'n', 'i', 't' }, '<C-j>', Snacks.terminal.toggle, { desc = 'Toggle Terminal' })
 
