@@ -112,6 +112,8 @@ vim.pack.add({
     -- [[ Snacks ]]
     'https://github.com/nvim-tree/nvim-web-devicons',
     'https://github.com/folke/snacks.nvim',
+    -- [[ Git ]]
+    'https://github.com/lewis6991/gitsigns.nvim',
     -- [[ UI ]]
     'https://github.com/folke/which-key.nvim',
     'https://github.com/echasnovski/mini.nvim',
@@ -184,6 +186,19 @@ require('snacks').setup({
     },
 })
 
+-- ############################################################################ [[ Plugins ]] Git
+
+-- gitsigns
+require('gitsigns').setup({
+    signs = {
+        add = { text = '+' },
+        change = { text = '~' },
+        delete = { text = '_', show_count = true },
+        topdelete = { text = '‾', show_count = true },
+        changedelete = { text = '~', show_count = true },
+    },
+})
+
 -- ############################################################################ [[ Plugins ]] UI
 
 -- which-key
@@ -192,6 +207,7 @@ require('which-key').setup({
     icons = { mappings = vim.g.have_nerd_font },
     spec = {
         { '<leader>s', group = '[S]earch' },
+        { '<leader>g', group = '[G]it' },
     },
 })
 
@@ -217,6 +233,7 @@ require('oil').setup({
 -- ############################################################################ [[ Keymaps ]]
 
 local map = vim.keymap.set
+local gs = require('gitsigns')
 
 -- [[ Global ]]
 map({ 'n', 'i' },           '<C-t>', '<cmd>enew<CR>',     { silent = true, desc = 'New tab' })
@@ -298,6 +315,32 @@ map('n', '<leader>sr', Snacks.picker.resume,      { desc = '[S]earch [R]esume' }
 map('n', '<leader>sR', ':%s//g<Left><Left>',      { desc = '[S]earch and [R]eplace in current File' })
 map('n', '<leader>sk', Snacks.picker.keymaps,     { desc = '[S]earch [K]eymaps' })
 map('n', '<Esc>',      '<cmd>nohlsearch<CR>',     { desc = 'Clear search highlights' })
+
+-- [[ Git ]]
+map('n', '<leader>gs', gs.stage_hunk,                { desc = '[S]tage Hunk' })
+map('n', '<leader>gr', gs.reset_hunk,                { desc = '[R]eset Hunk' })
+map('n', '<leader>gp', gs.preview_hunk,              { desc = '[P]review Hunk' })
+map('n', '<leader>gS', gs.stage_buffer,              { desc = '[S]tage File' })
+map('n', '<leader>gR', gs.reset_buffer,              { desc = '[R]eset File' })
+map('n', '<leader>gb', gs.toggle_current_line_blame, { desc = '[B]lame Toggle' })
+map('n', '<leader>gB', function()
+    gs.blame_line({ full = true })
+end,                                                 { desc = '[B]lame Line' })
+map('n', '<leader>gt', function()
+    Snacks.picker.git_log({ follow = true, current_file = true, })
+end,                                                 { desc = '[T]imeline' })
+map('n', '<leader>gd', function()
+    if vim.wo.diff then vim.cmd('diffoff!') vim.cmd('only')
+    else gs.diffthis() end
+end,                                                 { desc = '[D]iff Toggle' })
+vim.api.nvim_create_user_command('GitDiff', function(opts)
+    if opts.args == "status" then
+        Snacks.picker.git_diff()
+    else
+        local base = opts.args ~= "" and opts.args or nil
+        gs.diffthis(base)
+    end
+end, { nargs = '?' })
 
 -- [[ Terminal ]]
 map({ 'n', 'i', 't' }, '<C-j>', Snacks.terminal.toggle, { desc = 'Toggle Terminal' })
