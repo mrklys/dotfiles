@@ -112,6 +112,11 @@ vim.pack.add({
     -- [[ Snacks ]]
     'https://github.com/nvim-tree/nvim-web-devicons',
     'https://github.com/folke/snacks.nvim',
+    -- [[ Editor Utilities ]]
+    'https://github.com/windwp/nvim-autopairs',
+    'https://github.com/nvim-treesitter/nvim-treesitter-context',
+    'https://github.com/brenoprata10/nvim-highlight-colors',
+    'https://github.com/lambdalisue/suda.vim',
     -- [[ Git ]]
     'https://github.com/lewis6991/gitsigns.nvim',
     -- [[ UI ]]
@@ -185,6 +190,23 @@ require('snacks').setup({
         },
     },
 })
+
+-- ############################################################################ [[ Plugins ]] Editor Utilities
+
+-- autopairs
+require('nvim-autopairs').setup({})
+
+-- treesitter-context
+require('treesitter-context').setup({ max_lines = 3 })
+
+-- nvim-highlight-colors
+require('nvim-highlight-colors').setup({
+    render = 'background',
+    exclude_filetypes = { 'c', 'cpp' },
+})
+
+-- suda
+vim.g.suda_smart_edit = 1
 
 -- ############################################################################ [[ Plugins ]] Git
 
