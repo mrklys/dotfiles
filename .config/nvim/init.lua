@@ -122,6 +122,7 @@ vim.pack.add({
     -- [[ UI ]]
     'https://github.com/folke/which-key.nvim',
     'https://github.com/echasnovski/mini.nvim',
+    'https://github.com/akinsho/bufferline.nvim',
     'https://github.com/stevearc/oil.nvim',
 })
 
@@ -242,6 +243,22 @@ statusline.setup({ use_icons = vim.g.have_nerd_font })
 ---@diagnostic disable-next-line: duplicate-set-field
 statusline.section_location = function() return '%2l:%-2v' end
 
+-- bufferline
+require('bufferline').setup({
+    options = {
+        mode = 'buffers',
+        diagnostics = 'nvim_lsp',
+        offsets = { { filetype = 'snacks_layout_box', text = 'Explorer' } },
+        separator_style = 'slant',
+        always_show_bufferline = true,
+        enforce_regular_tabs = true,
+    },
+    highlights = {
+        buffer_selected = { bold = true, italic = false },
+        indicator_selected = { bold = true },
+    },
+})
+
 -- oil
 require('oil').setup({
     columns = { 'icon' },
@@ -311,6 +328,14 @@ map('i', '<C-Delete>', '<C-O>dw', { desc = 'Delete word forward' })
 -- Delete in Visual mode without copying it
 map('v', '<BS>',     '"_d', { desc = 'Delete selection' })
 map('v', '<Delete>', '"_d', { desc = 'Delete selection' })
+
+-- [[ Tab Navigation ]]
+map({ 'n', 'i' }, '<C-Tab>',   '<C-^>',                           { silent = true })
+map({ 'n', 'i' }, '<F1>',      '<cmd>BufferLineGoToBuffer 1<CR>', { silent = true })
+map({ 'n', 'i' }, '<F2>',      '<cmd>BufferLineGoToBuffer 2<CR>', { silent = true })
+map({ 'n', 'i' }, '<F3>',      '<cmd>BufferLineGoToBuffer 3<CR>', { silent = true })
+map({ 'n', 'i' }, '<F4>',      '<cmd>BufferLineGoToBuffer 4<CR>', { silent = true })
+map({ 'n', 'i' }, '<F5>',      '<cmd>BufferLineGoToBuffer 5<CR>', { silent = true })
 
 -- [[ Focus Navigation ]]
 map({ 'n' }, '<S-Left>',  '<C-o><C-w>h', { desc = 'Move focus left' })
