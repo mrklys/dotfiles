@@ -19,8 +19,6 @@ vim.o.relativenumber = false
 vim.o.mouse = 'a'
 -- Don't show the mode, since it's already in the status line
 vim.o.showmode = false
--- Sync clipboard between OS and Neovim.
-vim.schedule(function() vim.o.clipboard = 'unnamedplus' end)
 -- Enable break indent
 vim.o.breakindent = true
 -- Stops Neovim from creating .swp files (recovery files).
@@ -88,6 +86,23 @@ vim.o.wrap = false
 vim.o.hlsearch = false
 -- Highlights matches as you type your search query.
 vim.o.incsearch = true
+-- Only use OSC 52 if we are in an SSH session
+if vim.env.SSH_TTY then
+    vim.g.clipboard = {
+        name = 'OSC 52',
+        copy = {
+            ['+'] = require('vim.ui.clipboard.osc52').copy('+'),
+            ['*'] = require('vim.ui.clipboard.osc52').copy('*'),
+        },
+        paste = {
+            ['+'] = require('vim.ui.clipboard.osc52').paste('+'),
+            ['*'] = require('vim.ui.clipboard.osc52').paste('*'),
+        },
+    }
+else
+    -- Sync clipboard between OS and Neovim.
+    vim.schedule(function() vim.o.clipboard = 'unnamedplus' end)
+end
 
 -- ############################################################################ [[ Basic Autocommands ]]
 
