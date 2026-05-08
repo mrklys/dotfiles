@@ -407,3 +407,13 @@ end, { nargs = '?' })
 -- [[ Terminal ]]
 map({ 'n', 'i', 't' }, '<C-j>', Snacks.terminal.toggle, { desc = 'Toggle Terminal' })
 
+-- [[ URL ]]
+map('n', '<leader>w', function()
+    local target = vim.fn.expand('<cfile>')
+    if target:match('^https?://') then
+        vim.ui.open(target)
+    else
+        vim.notify('No URL found under cursor', vim.log.levels.WARN)
+    end
+end, { desc = '[W]eb open URL' })
+
