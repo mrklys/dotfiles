@@ -1,0 +1,191 @@
+{
+    // -------------------------------------------------------------------------------------------- Update
+    "update.mode": "manual",
+    "extensions.autoUpdate": "onlyEnabledExtensions",
+
+    // -------------------------------------------------------------------------------------------- Security
+    "security.workspace.trust.untrustedFiles": "open",
+    "telemetry.telemetryLevel": "off",
+
+    // -------------------------------------------------------------------------------------------- Terminal
+    "terminal.integrated.scrollback": 10000,
+    "terminal.integrated.cursorBlinking": true,
+    "terminal.integrated.cursorStyle": "underline",
+    "terminal.integrated.cursorStyleInactive": "underline",
+    "terminal.integrated.fontSize": 16,
+    "terminal.integrated.fontWeight": "normal",
+    "terminal.integrated.persistentSessionReviveProcess": "never",
+    "terminal.integrated.tabs.enabled": true,
+    "terminal.integrated.defaultProfile.linux": "bash",
+    "terminal.integrated.profiles.linux": {
+        "linux": {
+            "path": "bash",
+            "icon": "terminal-bash"
+        }
+    },
+
+    // -------------------------------------------------------------------------------------------- SCM
+    "scm.repositories.selectionMode": "single",
+    "scm.alwaysShowRepositories": false,
+    "scm.alwaysShowActions": false,
+    "scm.showActionButton": false,
+    "scm.showInputActionButton": false,
+    "scm.autoReveal": true,
+
+    "git.autorefresh": true,
+    "git.showCommitInput": false,
+    "git.openRepositoryInParentFolders": "never",
+
+    "github.gitAuthentication": false,
+
+    // -------------------------------------------------------------------------------------------- Editor
+    "editor.fontSize": 16,
+    "editor.fontFamily": "MesloLGS Nerd Font, JetBrains Mono, Cascadia Code, monospace",
+    "editor.fontWeight": "normal",
+    "editor.fontLigatures": true,
+    "editor.minimap.enabled": true,
+    "editor.tabSize": 4,
+    "editor.insertSpaces": true,
+    "editor.detectIndentation": true,
+    "editor.bracketPairColorization.enabled": true,
+    "editor.quickSuggestions": {
+        "other": "on",
+        "comments": "on",
+        "strings": "on"
+    },
+    "editor.quickSuggestionsDelay": 10,
+    "editor.suggest.localityBonus": true,
+    "editor.suggest.showInlineDetails": true,
+    "editor.suggest.selectionMode": "always",
+    "editor.suggestOnTriggerCharacters": true,
+    "editor.suggestSelection": "recentlyUsedByPrefix",
+    "editor.inlineSuggest.enabled": true,
+    "editor.inlineSuggest.suppressSuggestions": false,
+    "editor.wordBasedSuggestions": "matchingDocuments",
+    "editor.acceptSuggestionOnCommitCharacter": true,
+    "editor.acceptSuggestionOnEnter": "on",
+    "editor.inlayHints.enabled": "on",
+    "editor.tabCompletion": "off",
+    "editor.parameterHints.enabled": true,
+    "editor.selectionHighlight": true,
+    "editor.occurrencesHighlight": "singleFile",
+    "editor.wordWrap": "off",
+    "editor.guides.bracketPairs": "active",
+    "editor.renderWhitespace": "selection",
+    "editor.find.addExtraSpaceOnTop": false,
+    "editor.stickyScroll.enabled": true,
+    "editor.hover.sticky": true,
+    // minimap
+    "editor.minimap.autohide": "mouseover",
+    // cursor
+    "editor.cursorSmoothCaretAnimation": "on",
+    "editor.cursorBlinking": "phase",
+    "editor.multiCursorModifier": "ctrlCmd",
+    // scrollbar
+    "editor.scrollbar.horizontal": "auto",
+    "editor.scrollbar.vertical": "auto",
+    "editor.scrollbar.horizontalScrollbarSize": 4,
+    "editor.scrollbar.verticalScrollbarSize": 8,
+    // diffEditor
+    "diffEditor.ignoreTrimWhitespace": false,
+    "diffEditor.renderSideBySide": false,
+    "diffEditor.experimental.showMoves": true,
+    "diffEditor.hideUnchangedRegions.enabled": true,
+    // format
+    "editor.formatOnType": false,
+    "editor.formatOnSave": false,
+
+    // -------------------------------------------------------------------------------------------- Search
+    "search.exclude": {
+        "**/.git"       : true,
+        "**/.github"    : false,
+        "**/.output"    : true,
+        "**/CHANGELOG*" : true,
+        "**/LICENSE*"   : true
+    },
+
+    // -------------------------------------------------------------------------------------------- UI
+    "window.dialogStyle": "custom",
+    "window.title": "${rootName}",
+    "window.titleBarStyle": "custom",
+    "explorer.autoReveal": false,
+
+    "workbench.colorTheme": "Visual Studio Dark - C++",
+    "workbench.iconTheme": "vscode-icons",
+    "workbench.activityBar.location": "top",
+    "workbench.layoutControl.enabled": false,
+    "workbench.list.smoothScrolling": true,
+    "workbench.editor.tabActionLocation": "right",
+    "workbench.editor.highlightModifiedTabs": true,
+    "workbench.tree.expandMode": "singleClick",
+    "workbench.tree.indent": 8,
+    "workbench.tree.renderIndentGuides": "none",
+    "workbench.browser.showInTitleBar": false,
+    "debug.toolBarLocation": "commandCenter",
+    // Theme Customizations
+    "workbench.colorCustomizations": {
+        "[Visual Studio Dark - C++]": {
+            "editor.background":"#191919",
+            "editorLineNumber.activeForeground":"#c6c6c6",
+            "editorLineNumber.foreground":"#2b91af",
+            "statusBar.background":"#0E639C",
+
+            "terminal.ansiBlack":"#15161e",
+            "terminal.ansiRed":"#f7768e",
+            "terminal.ansiGreen":"#9ece6a",
+            "terminal.ansiYellow":"#e0af68",
+            "terminal.ansiBlue":"#7aa2f7",
+            "terminal.ansiMagenta":"#bb9af7",
+            "terminal.ansiCyan":"#7dcfff",
+            "terminal.ansiWhite":"#a9b1d6",
+
+            "terminal.ansiBrightBlack":"#414868",
+            "terminal.ansiBrightRed":"#f7768e",
+            "terminal.ansiBrightGreen":"#9ece6a",
+            "terminal.ansiBrightYellow":"#e0af68",
+            "terminal.ansiBrightBlue":"#7aa2f7",
+            "terminal.ansiBrightMagenta":"#bb9af7",
+            "terminal.ansiBrightCyan":"#7dcfff",
+            "terminal.ansiBrightWhite":"#c0caf5",
+
+            "terminal.foreground":"#c0caf5"
+        }
+    },
+    // Zen Mode
+    "zenMode.showTabs": "none",
+    "zenMode.centerLayout": false,
+    // AI
+    "chat.disableAIFeatures": true,
+    "chat.titleBar.signIn.enabled": false,
+
+    // -------------------------------------------------------------------------------------------- Tools
+    // Git Graph
+    "git-graph.contextMenuActionsVisibility": {
+        "commit": {
+            "addTag": false,
+            "createBranch": false,
+            "merge": false,
+            "rebase": false,
+        }
+    },
+    "git-graph.repository.commits.mute.mergeCommits": true,
+    "git-graph.repository.commits.mute.commitsThatAreNotAncestorsOfHead": true,
+    // C/C++
+    "C_Cpp.intelliSenseMemoryLimit": 8192,
+    "C_Cpp.formatting": "clangFormat",
+    // Better Comments
+    "better-comments.highlightPlainText": true,
+    // Path Autocomplete
+    "path-autocomplete.extensionOnImport": true,
+    // VS Icons
+    "vsicons.dontShowNewVersionMessage": true,
+    // Color Highlight
+    "color-highlight.languages": [
+        "*",
+        "!c",
+        "!cpp",
+        "!javascript",
+        "!python"
+    ]
+}
+

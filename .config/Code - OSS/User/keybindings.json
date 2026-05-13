@@ -1,0 +1,10 @@
+[
+    {
+        "key": "ctrl+shift+b",
+        "command": "workbench.action.tasks.runTask"
+    },
+    {
+        "key": "alt+r",
+        "command": "workbench.files.action.showActiveFileInExplorer"
+    }
+]
